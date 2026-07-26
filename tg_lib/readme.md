@@ -37,44 +37,34 @@ ensure es_extended or qbx_core
 Add the following configuration template to your `config.lua` file. This includes core setups, framework adapters, and default starting economy balances:
 
 ```lua
-Config = {}
+return {
+    DISCORD_API_URL = "https://discord.com/api/v9", -- don't change if you don't know what you are doing
 
--- ==========================================
--- 🔌 Framework & Economy Settings
--- ==========================================
-Config.Framework = 'QBOX' -- Options: 'ESX', 'QBOX', 'STANDALONE'
-
-Config.Economy = {
-    DefaultStartingBalance = 5000, -- Default cash balance given to new players
-    DefaultBankBalance = 15000,    -- Default bank balance given to new players
-    CurrencySymbol = '$',          -- Currency display symbol
-    AllowNegativeBalance = false,   -- Prevent player account balances from dropping below 0
-}
-
--- ==========================================
--- 📦 Enabled Modules (Toggle true/false)
--- ==========================================
-Config.Modules = {
-    Ambulance = true,
-    Clothing = true,
-    Fuel = true,
-    Inventory = true,
-    Multicharacter = true,
-    Weather = true,
-    VehicleKeys = true,
-    Target = true, -- Set to true to hook ox_target integrations
-}
-
--- ==========================================
--- 🌐 Discord Webhook Logging
--- ==========================================
-Config.Discord = {
-    Webhook = "https://discord.com/api/webhooks/...", -- Replace with your Discord server webhook
-    SystemLogs = true,
-    EconomyLogs = true, -- Logs player balance transactions (deposits/withdrawals)
+    botToken = '', -- bot token which can achive from discord developer portal
+    guildId = '', -- guild id which the bot need to be
+    databaseString = {
+        interfaice_wait =
+            'SELECT * FROM tg_lib WHERE identifier = ?',
+    
+        interfaice_create =
+            'INSERT INTO tg_lib (identifier) VALUES (?)',
+    
+        interfaice_update =
+            'UPDATE tg_lib SET notification_settings = ?, listmenu_position = ?, contextmenu_position = ?, textui_settings = ? WHERE identifier = ?',
+    
+        istableExist =
+            'SELECT COUNT(*) AS count FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name = ?',
+        
+        banned_wait =
+            'SELECT * FROM tg_banned_players WHERE license = ?',
+    },
+    usersAsAdmin = {
+        --['discord:869838160841019402'] = 'admin'
+        --Addition Admin or ace permission is require
+    }
 }
 ```
 
 > [!IMPORTANT]
-> Make sure `Config.Framework` matches the framework running on your server. If using QBOX, ensure `qbx_core` is fully loaded before `tg_lib` initialization.
+> Make sure `botToken` need to set or else some of the function not work.
 
