@@ -22,6 +22,7 @@ Advance lib which has so much module to handle activity
 - 🔺 Point Module
 - 🚘 Vehicle Handle Module
 - ⭕ Zone Module
+---
 
 ### Installation
 
@@ -73,6 +74,8 @@ return {
 add_ace resource.tg_lib command allow
 ```
 
+---
+
 ### How to use
 To enable the library inside of your resource just add @tg_lib/init.lua as a shared_script in your fxmanifest.lua file.
 
@@ -84,3 +87,12 @@ shared_scripts {
 ```lua
 shared_script '@tg_lib/init.lua'
 ```
+----
+
+### How to use Icon for Interface
+tg_lib is using the lucide libary which has pritty good and big icon library to use inside your script.
+```lua
+icon = `icon-hand-fist`
+```
+
+---
