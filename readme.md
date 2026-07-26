@@ -22,5 +22,3 @@ The next-generation FiveM framework focused on performance, modularity, and deve
 - 📖 Guides
 - 🔌 API Reference
 - 💬 Discord
-
----
