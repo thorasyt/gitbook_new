@@ -25,14 +25,14 @@ Advance lib which has so much module to handle activity
 
 ### Installation
 
-1. Download tg_lib and Extract it to your resouces folder
-2. Add ``tg_lib`` in server.cfg before framework resource
+##### 1. Download tg_lib and Extract it to your resouces folder
+##### 2. Add ``tg_lib`` in server.cfg before framework resource
 ```cfg
 ensure tg_lib
 ensure es_extended or qbx_core
 
 ```
-3. Configuration
+##### 3. Configuration
 
 Add the following configuration template to your `config.lua` file. This includes core setups, framework adapters, and default starting economy balances:
 
@@ -68,3 +68,19 @@ return {
 > [!IMPORTANT]
 > Make sure `botToken` need to set or else some of the function not work.
 
+##### 4. Add to server.cfg
+```cfg
+add_ace resource.tg_lib command allow
+```
+
+### How to use
+To enable the library inside of your resource just add @tg_lib/init.lua as a shared_script in your fxmanifest.lua file.
+
+```lua
+shared_scripts {
+    '@tg_lib/init.lua',
+}
+```
+```lua
+shared_script '@tg_lib/init.lua'
+```
