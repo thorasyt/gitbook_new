@@ -21,3 +21,152 @@ if player then
    print(json.encode(player))
 end
 ```
+
+
+### TG.Core.HasPerms
+-------
+This function returns a boolean indicating whether the player has the specified permission.
+
+##### parameters:
+- source: (number) the player's server side id
+- perms: (string) the permission to check
+
+##### return:
+- boolean: true if the player has the permission, false otherwise
+
+{% hint style="info" %}
+This function checks the player's framework permissions instead of ACE permissions.
+{% endhint %}
+
+##### Example
+```lua
+local hasPerms = TG.Core.HasPerms(source, "admin.ban")
+if hasPerms then
+   print("Player has permission")
+end
+```
+
+
+### TG.Core.GetPlayers
+----
+this function will return entire players inside server.
+
+##### return 
+- table: array of playerdata object
+
+{% hint style="info" %}
+This function is build for our on scripts
+{% endhint %}
+
+
+##### Example
+```lua
+local players = TG.Core.GetPlayers()
+for i = 1, #players do
+    local player = players[i]
+    print(player.name || player.label) -- label has player id 
+    print(player.id || player.value)
+    print(player.sex)
+end
+```
+
+### TG.Core.GetPlayerJob
+----
+This function will return player job using player Id
+
+##### parameters
+- source: (number) the player's server side id
+
+##### return
+- table: player job object
+
+{% hint style="warning" %}
+result may vary according to framework.
+{% endhint %}
+
+
+##### Example
+```lua
+local playerJob = TG.Core.GetPlayerJob(source)
+if playerJob then
+   print(json.encode(playerJob))
+end
+```
+
+### TG.Core.GetPlayerName
+----
+this function will return player name using player Id
+
+##### parameters
+- source: (number) the player's server side id
+
+##### return
+- string: player name
+
+##### Example
+```lua
+local playerName = TG.Core.GetPlayerName(source)
+if playerName then
+   print(playerName)
+end
+```
+
+### TG.Core.GetPlayerAccount
+----
+This function will return player specified account's money using  player Id
+
+##### parameters
+- source: (number) the player's server side id
+- accountName: (string) the account name
+
+##### return
+- number: player account's money
+
+##### Example
+```lua
+local playerAccount = TG.Core.GetPlayerAccount(source, "money")
+if playerAccount then
+   print(playerAccount)
+end
+```
+
+### TG.Core.AddMoney
+----
+This function will add money to player's specified account using player Id
+
+##### parameters
+- source: (number) the player's server side id
+- accountName: (string) the account name
+- amount: (number) the amount of money to add
+
+##### return
+- boolean: true if the money was added successfully, false otherwise
+
+##### Example
+```lua
+local playerAccount = TG.Core.AddMoney(source, "money", 100)
+if playerAccount then
+   print("Money added successfully")
+end
+```
+
+
+### TG.Core.RemoveMoney
+----
+This function will remove money from player's specified account using player Id
+
+##### parameters
+- source: (number) the player's server side id
+- accountName: (string) the account name
+- amount: (number) the amount of money to remove
+
+##### return
+- boolean: true if the money was removed successfully, false otherwise
+
+##### Example
+```lua
+local playerAccount = TG.Core.RemoveMoney(source, "money", 100)
+if playerAccount then
+   print("Money removed successfully")
+end
+```
