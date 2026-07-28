@@ -170,3 +170,21 @@ if playerAccount then
    print("Money removed successfully")
 end
 ```
+
+
+### TG.Core.GetJobs
+----
+This function will return all jobs inside the server
+
+##### return
+- table: array of job objects
+
+##### Example
+```lua
+local jobs = TG.Core.GetJobs()
+for i = 1, #jobs do
+    local job = jobs[i]
+    print(job.value) 
+    print(job.label) 
+    print(#job.grades)
+end
