@@ -38,4 +38,4 @@ local vehicles = TG.Core.VehicleList()
 ```
 
 > [!IMPORTANT]
-> If you need know which framework or need to refer which one in script use ```lua local framework = TG.Core.GetFramework()```
+> If you need know which framework or need to refer which one in script use ```local framework = TG.Core.framework```
