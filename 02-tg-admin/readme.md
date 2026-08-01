@@ -1,4 +1,5 @@
-# tg-admin — Administration Panel & Management System
+# tg-admin 
+### Administration Panel & Management System
 
 `tg-admin` is a powerful, modern administration tool for FiveM roleplay servers. Built with a React-based NUI panel and integrated directly with `tg_lib`, it offers real-time server tracking, player monitoring, ticket management, prop spawning, and vehicle modification controls.
 
