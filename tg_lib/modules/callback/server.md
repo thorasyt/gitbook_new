@@ -30,7 +30,7 @@ Asynchronously triggers a callback on a specific client, sending the result to a
 
 ##### Example
 ```lua
-TG.callback.run('my_resource:client:getData', playerId, function(clientData)
+TG.callback('my_resource:client:getData', playerId, function(clientData)
     print("Player data received:", clientData)
 end, arg1)
 ```

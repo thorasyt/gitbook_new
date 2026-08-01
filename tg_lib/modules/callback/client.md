@@ -29,7 +29,7 @@ Asynchronously triggers a server callback, passing the response values to a hand
 
 ##### Example
 ```lua
-TG.callback.run('my_resource:server:queryDatabase', function(result)
+TG.callback('my_resource:server:queryDatabase', function(result)
     print("Received query result:", json.encode(result))
 end, param1)
 ```

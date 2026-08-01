@@ -58,3 +58,11 @@ Explore the documentation for each specific module's side:
 *   **🔺 Points**: [Client Side](points/client.md)
 *   **🚘 Vehicle Spawning**: [Server Side](vehiclespawn/server.md) | [Client Side](vehiclespawn/client.md)
 *   **⭕ Zones**: [Client Side](zonecreator/client.md)
+
+### Global & Utility Modules
+
+*   **🐛 Debug**: [Server Side](debug/server.md) | [Client Side](debug/client.md)
+*   **👥 Nearby Players**: [Server Side](nearbyplayers/server.md) | [Client Side](nearbyplayers/client.md)
+*   **👤 Player Name**: [Server Side](playername/server.md) | [Client Side](playername/client.md)
+*   **⚡ Random Generator**: [Server Side](random/server.md) | [Client Side](random/client.md)
+*   **📦 Require & JSON Helpers**: [Server Side](require/server.md) | [Client Side](require/client.md)
