@@ -1,5 +1,5 @@
-# Server Side
-You can easily call this function inside your resource script by doing `TG.random`.
+# Shared
+You can call this function on both the client and server side using `TG.random`.
 
 ### TG.random
 ----
@@ -10,8 +10,8 @@ Generates a randomized alphanumeric string based on a pattern template.
   - `1`: Numbers (`0`-`9`)
   - `A`: Uppercase letters (`A`-`Z`)
   - `a`: Lowercase letters (`a`-`z`)
-  - `.`: Alphanumeric characters (either uppercase letter or number)
-- `length`: (number) Optional. Overrides the pattern length (either padding with spaces or omitting characters).
+  - `.`: Alphanumeric characters
+- `length`: (number) Optional. Overrides the pattern length.
 
 ##### Return:
 - `string`: The generated random string.

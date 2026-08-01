@@ -1,5 +1,5 @@
-# Server Side
-You can easily call this function inside your resource script by doing `TG.getNearByPlayers`.
+# Shared
+You can call this function on both the client and server side using `TG.getNearByPlayers`.
 
 ### TG.getNearByPlayers
 ----
@@ -8,12 +8,13 @@ Gets a list of players currently standing within a specific radius of coordinate
 ##### Parameters:
 - `coords`: (vector3) Map coordinates center.
 - `radius`: (number) Distance threshold (default `2.0`).
+- `selfInclude`: (boolean) Client-only. Whether to include the local player in the list.
 
 ##### Return:
 - `table`: Array of tables containing:
   - `id`: (number) Player server ID.
   - `ped`: (number) Player ped entity handle.
-  - `coords`: (vector3) Player coordinates on the server.
+  - `coords`: (vector3) Player coordinates.
 
 ##### Example
 ```lua

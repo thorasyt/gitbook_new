@@ -1,5 +1,5 @@
-# Client Side
-These functions manage script loading, environment isolation, and JSON file storage.
+# Shared
+These functions manage script loading, environment isolation, and JSON file storage on both client and server side.
 
 ### require (Global Replacement)
 ----

@@ -61,8 +61,11 @@ Explore the documentation for each specific module's side:
 
 ### Global & Utility Modules
 
-*   **🐛 Debug**: [Server Side](debug/server.md) | [Client Side](debug/client.md)
-*   **👥 Nearby Players**: [Server Side](nearbyplayers/server.md) | [Client Side](nearbyplayers/client.md)
-*   **👤 Player Name**: [Server Side](playername/server.md) | [Client Side](playername/client.md)
-*   **⚡ Random Generator**: [Server Side](random/server.md) | [Client Side](random/client.md)
-*   **📦 Require & JSON Helpers**: [Server Side](require/server.md) | [Client Side](require/client.md)
+*   **🐛 Debug**: [Shared](debug/shared.md)
+*   **👤 Get Player Identifier**: [Shared](getidentifier/shared.md)
+*   **👥 Nearby Players**: [Shared](nearbyplayers/shared.md)
+*   **👤 Player Name**: [Shared](playername/shared.md)
+*   **⚡ Random Generator**: [Shared](random/shared.md)
+*   **📦 Require & JSON Helpers**: [Shared](require/shared.md)
+*   **🏁 Resource State Check**: [Shared](resourcestate/shared.md)
+*   **⌛ Wait For Callback**: [Shared](waitfor/shared.md)
