@@ -97,4 +97,10 @@ icon = `icon-hand-fist`
 
 ---
 
+### How to change user interface
+tg_lib is has multiple user interface to use inside your script
 
+###### Command
+```
+/tg_lib_ui
+```
