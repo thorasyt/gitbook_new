@@ -1,255 +1,448 @@
 # Server Side
-you can easily call all of this function inside of your resource script by doing `TG.Core`
+You can easily call all of these functions inside your resource script by doing `TG.Core`.
+
+> [!TIP]
+> You can query `TG.Core.framework` to determine which framework is running (returns `'esx'` or `'qbx'`).
+
+---
+
+## General Core APIs
 
 ### TG.Core.GetPlayer
 ----
-this function will return playerdata object of specified player by id or source.
-##### parameters:
-- source: (number) the player's server side id
+Returns the native framework player object (ESX `xPlayer` or QBox `Player` object).
 
-##### return:
-- table: playerdata object
+##### Parameters:
+- `source`: (number) The player's server ID.
+
+##### Return:
+- `table | boolean`: The player object, or `false` if not found.
 
 {% hint style="warning" %}
-result may vary according to framework.
+The structure and methods of the returned player object vary according to the running framework (e.g. `xPlayer.getGroup()` under ESX vs `Player.Functions.AddMoney()` under QBox).
 {% endhint %}
 
 ##### Example
 ```lua
 local player = TG.Core.GetPlayer(source)
-if player then
-   print(json.encode(player))
-end
 ```
 
 
 ### TG.Core.HasPerms
--------
-This function returns a boolean indicating whether the player has the specified permission.
+----
+Checks whether the player source possesses the given administrative group or permission.
 
-##### parameters:
-- source: (number) the player's server side id
-- perms: (string) the permission to check
+##### Parameters:
+- `source`: (number) The player's server ID.
+- `perm`: (string) Permission node or group name (e.g. `'group.admin'`, `'admin'`).
 
-##### return:
-- boolean: true if the player has the permission, false otherwise
-
-{% hint style="info" %}
-This function checks the player's framework permissions instead of ACE permissions.
-{% endhint %}
+##### Return:
+- `boolean`: `true` if permitted, `false` otherwise.
 
 ##### Example
 ```lua
-local hasPerms = TG.Core.HasPerms(source, "admin.ban")
-if hasPerms then
-   print("Player has permission")
-end
+local isAllowed = TG.Core.HasPerms(source, 'admin')
 ```
 
 
 ### TG.Core.GetPlayers
 ----
-this function will return entire players inside server.
+Returns all players currently online formatted for administrative panel listings.
 
-##### return 
-- table: array of playerdata object
-
-{% hint style="info" %}
-This function is build for our on scripts
-{% endhint %}
-
+##### Return:
+- `table`: Array of player elements `{ label, name, id, value, sex, description, icon }`. The `.sex` property is standardized to `'m'` or `'f'`.
 
 ##### Example
 ```lua
 local players = TG.Core.GetPlayers()
-for i = 1, #players do
-    local player = players[i]
-    print(player.name || player.label) -- label has player id 
-    print(player.id || player.value)
-    print(player.sex)
-end
 ```
 
-### TG.Core.GetPlayerJob
-----
-This function will return player job using player Id
-
-##### parameters
-- source: (number) the player's server side id
-
-##### return
-- table: player job object
-
-{% hint style="warning" %}
-result may vary according to framework.
-{% endhint %}
-
-
-##### Example
-```lua
-local playerJob = TG.Core.GetPlayerJob(source)
-if playerJob then
-   print(json.encode(playerJob))
-end
-```
 
 ### TG.Core.GetPlayerName
 ----
-this function will return player name using player Id
+Returns the standardized character/player name.
 
-##### parameters
-- source: (number) the player's server side id
+##### Parameters:
+- `source`: (number) The player's server ID.
 
-##### return
-- string: player name
+##### Return:
+- `string | boolean`: Player name string, or `false`.
 
 ##### Example
 ```lua
-local playerName = TG.Core.GetPlayerName(source)
-if playerName then
-   print(playerName)
-end
+local charName = TG.Core.GetPlayerName(source)
 ```
+
+
+### TG.Core.GetPlayerJob
+----
+Retrieves the player's current job details.
+
+##### Parameters:
+- `source`: (number) The player's server ID.
+
+##### Return:
+- `table | boolean`: The job object table, or `false`.
+  - **ESX fields**: `.name`, `.label`, `.grade`, `.grade_name`, `.grade_label`, `.grade_salary`.
+  - **QBox fields**: `.name`, `.label`, `.grade` (table with `.name`, `.level`), `.payment`, `.onduty`.
+
+##### Example
+```lua
+local job = TG.Core.GetPlayerJob(source)
+```
+
 
 ### TG.Core.GetPlayerAccount
 ----
-This function will return player specified account's money using  player Id
+Retrieves the balance of a player's cash or bank account.
 
-##### parameters
-- source: (number) the player's server side id
-- accountName: (string) the account name
+##### Parameters:
+- `source`: (number) The player's server ID.
+- `account`: (string) Account name (e.g. `'money'`, `'bank'`). On QBox, `'money'` maps to `'cash'`.
 
-##### return
-- number: player account's money
+##### Return:
+- `number | boolean`: Account balance, or `false`.
 
 ##### Example
 ```lua
-local playerAccount = TG.Core.GetPlayerAccount(source, "money")
-if playerAccount then
-   print(playerAccount)
-end
+local bankBalance = TG.Core.GetPlayerAccount(source, 'bank')
 ```
+
 
 ### TG.Core.AddMoney
 ----
-This function will add money to player's specified account using player Id
+Deposits cash or bank money to a player.
 
-##### parameters
-- source: (number) the player's server side id
-- accountName: (string) the account name
-- amount: (number) the amount of money to add
+##### Parameters:
+- `source`: (number) The player's server ID.
+- `account`: (string) Account name. On QBox, `'money'` maps to `'cash'`.
+- `amount`: (number) Money to add.
 
-##### return
-- boolean: true if the money was added successfully, false otherwise
+##### Return:
+- `boolean`: `true` if successful, `false` otherwise.
 
 ##### Example
 ```lua
-local playerAccount = TG.Core.AddMoney(source, "money", 100)
-if playerAccount then
-   print("Money added successfully")
-end
+TG.Core.AddMoney(source, 'bank', 1000)
 ```
 
 
 ### TG.Core.RemoveMoney
 ----
-This function will remove money from player's specified account using player Id
+Deducts cash or bank money from a player.
 
-##### parameters
-- source: (number) the player's server side id
-- accountName: (string) the account name
-- amount: (number) the amount of money to remove
+##### Parameters:
+- `source`: (number) The player's server ID.
+- `account`: (string) Account name. On QBox, `'money'` maps to `'cash'`.
+- `amount`: (number) Money to remove.
 
-##### return
-- boolean: true if the money was removed successfully, false otherwise
+##### Return:
+- `boolean`: `true` if successful, `false` otherwise.
 
 ##### Example
 ```lua
-local playerAccount = TG.Core.RemoveMoney(source, "money", 100)
-if playerAccount then
-   print("Money removed successfully")
-end
+TG.Core.RemoveMoney(source, 'bank', 500)
 ```
 
 
 ### TG.Core.GetJobs
 ----
-This function will return all jobs inside the server
+Returns a sorted list of all registered jobs on the server.
 
-##### return
-- table: array of job objects
+##### Return:
+- `table`: Map of jobs, including their grades array.
 
 ##### Example
 ```lua
 local jobs = TG.Core.GetJobs()
-for i = 1, #jobs do
-    local job = jobs[i]
-    print(job.value) 
-    print(job.label) 
-    print(#job.grades)
-end
 ```
 
 
 ### TG.Core.SetJob
 ----
-This function will set job of player using player Id
+Sets the job and grade of a player.
 
-##### parameters
-- source: (number) the player's server side id
-- jobName: (string) the job name
-- grade: (number) the grade of the job
+##### Parameters:
+- `source`: (number) Player server ID.
+- `job`: (string) Job name.
+- `grade`: (number) Job grade level.
 
-##### return
-- boolean: true if the job was set successfully, false otherwise
+##### Return:
+- `boolean`: `true` if successful, `false` otherwise.
 
 ##### Example
 ```lua
-local playerJob = TG.Core.SetJob(source, "police", 0)
-if playerJob then
-   print("Job set successfully")
-end
+TG.Core.SetJob(source, 'police', 2)
 ```
 
+---
+
+## Vehicle Management APIs
 
 ### TG.Core.PlateExist
------
-This function will return a boolen value true if plate exist in database otherwise false
+----
+Verifies whether a vehicle plate already exists in the database.
 
-##### parameters
-- plate: (string) the plate to check
+##### Parameters:
+- `plate`: (string) License plate string.
 
-##### return
-- boolean: true if the plate exists, false otherwise
+##### Return:
+- `boolean`: `true` if it exists, `false` otherwise.
 
-##### Example
 ```lua
-local plateExist = TG.Core.PlateExist("123456")
-if plateExist then
-   print("Plate exists")
-end
+local exists = TG.Core.PlateExist('TGLIB')
 ```
 
 
 ### TG.Core.AddVehicleToDatabase
 ----
-This function will execute vehicle spawn and save properties to database then return boolen value.
+Saves a new vehicle to the database under the player's ownership and spawns it.
+- **ESX Database**: Inserts into `owned_vehicles`.
+- **QBox Database**: Inserts into `players_vehicles` via `qbx_vehicles`.
 
-##### parameters
-- src: (number) the player's server side id
-- model: (string) the vehicle model
-- plate: (string) the vehicle plate
+##### Parameters:
+- `src`: (number) Owner player server ID.
+- `model`: (string) Vehicle model.
+- `plate`: (string) Vehicle plate.
 
-##### return
-- boolean: true if the vehicle was added successfully, false otherwise
+##### Return:
+- `boolean`: `true` if successfully added and spawned, `false` otherwise.
 
-##### Example
 ```lua
-local vehicleAdded = TG.Core.AddVehicleToDatabase(source, "Adder", "123456")
-if vehicleAdded then
-   print("Vehicle added successfully")
-end
+TG.Core.AddVehicleToDatabase(source, 'adder', 'TGLIB')
 ```
 
 
-### 
+### TG.Core.updateVehicle
+----
+Updates vehicle custom property JSON modifications in the database (applicable under **ESX**; immediately fires callback with `true` under **QBox**).
+
+##### Parameters:
+- `plate`: (string) Vehicle plate.
+- `prop`: (table) Vehicle mods properties table.
+- `cb`: (function) Optional callback `function(success: boolean)`.
+
+```lua
+TG.Core.updateVehicle('TGLIB', propertiesTable)
+```
+
+
+### TG.Core.UpdatePlate
+----
+Updates the license plate string database reference (applicable under **ESX** only; no-op under **QBox**).
+
+##### Parameters:
+- `oplate`: (string) Old plate string.
+- `nplate`: (string) New plate string.
+- `src`: (number) Invoker player server ID for notification display.
+
+```lua
+TG.Core.UpdatePlate('OLD123', 'NEW123', source)
+```
+
+
+### TG.Core.SetVehicleOwner
+----
+Updates vehicle database ownership.
+- If `src` > `0`: Transfers owner citizen ID/license index.
+- If `src` == `0`: Deletes the owned vehicle entry.
+
+##### Parameters:
+- `src`: (number) Target player server ID (or `0` to delete).
+- `plate`: (string) Vehicle plate.
+
+```lua
+TG.Core.SetVehicleOwner(targetPlayerId, 'TGLIB')
+```
+
+
+### TG.Core.GetVehicles
+----
+Fetches owned vehicles matching player ID and plate constraints.
+
+##### Parameters:
+- `src`: (number) Target player server ID.
+- `plate`: (string) Optional. Plate filter (if matched, returns the raw vehicle row instead).
+
+##### Return:
+- `table`: Array list of owned vehicles `{ label, value, plate, state, garage }`, or the raw matching vehicle row.
+
+```lua
+local vehicles = TG.Core.GetVehicles(source)
+```
+
+
+### TG.Core.SpawnVehicle
+----
+Spawns one of the player's owned vehicles by plate.
+
+##### Parameters:
+- `src`: (number) Player server ID.
+- `data`: (table) Data containing `.plate`.
+- `cb`: (function) Optional callback receiving the network entity handle.
+
+```lua
+TG.Core.SpawnVehicle(source, { plate = 'TGLIB' }, function(vehicle)
+    print("Spawned vehicle:", vehicle)
+end)
+```
+
+
+### TG.Core.DeleteVehicle
+----
+Deletes a vehicle record from the database by its plate.
+
+> [!IMPORTANT]
+> Exclusive to **QBox** (using `qbx_vehicles`).
+
+##### Parameters:
+- `target`: (number) Player ID.
+- `plate`: (string) Vehicle plate.
+
+##### Return:
+- `boolean`: `true` if successful, `false` otherwise.
+
+```lua
+TG.Core.DeleteVehicle(source, 'TGLIB')
+```
+
+---
+
+## Gang APIs (QBox/QBCore Only)
+
+> [!IMPORTANT]
+> The gang utility APIs are exclusive to **QBox** and **QBCore** structures. Under ESX, these functions do not exist.
+
+### TG.Core.GetPlayerGang
+----
+Retrieves a player's gang status.
+
+##### Parameters:
+- `source`: (number) Player server ID.
+
+##### Return:
+- `table | boolean`: Gang status object containing `.name` and `.grade`, or `false`.
+
+```lua
+local gang = TG.Core.GetPlayerGang(source)
+```
+
+
+### TG.Core.GetGangs
+----
+Returns a list of all registered gangs on the server.
+
+##### Return:
+- `table`: Gangs data table list.
+
+```lua
+local gangs = TG.Core.GetGangs()
+```
+
+
+### TG.Core.SetGang
+----
+Sets the gang and grade of a player.
+
+##### Parameters:
+- `source`: (number) Player server ID.
+- `gang`: (string) Gang name.
+- `grade`: (number) Gang grade level.
+
+##### Return:
+- `boolean`: `true` if successful, `false` otherwise.
+
+```lua
+TG.Core.SetGang(source, 'ballas', 1)
+```
+
+---
+
+## Dynamic Job Management APIs (QBox/QBCore Only)
+
+> [!IMPORTANT]
+> These administrative functions are exclusive to **QBox** utilizing dynamic core edits and group integrations.
+
+### TG.Core.getJobsAndEmploy
+----
+Retrieves the list of jobs along with the current online group members count.
+
+##### Return:
+- `table`: Jobs list containing `.totalPlayer` count fields.
+
+```lua
+local data = TG.Core.getJobsAndEmploy()
+```
+
+
+### TG.Core.createJob
+----
+Creates a new job dynamically in the framework registry.
+
+##### Parameters:
+- `jobName`: (string) Unique code name.
+- `jobLabel`: (string) Display name.
+- `grades`: (array) List of grade tables `{ grade = 0, label = 'Recruit', salary = 100 }`.
+
+##### Return:
+- `boolean`: `true` if successful, `false` otherwise.
+- `string`: Error message if unsuccessful.
+
+```lua
+local ok, err = TG.Core.createJob('mechanic', 'Auto Repairs', { { grade = 0, label = 'Apprentice', salary = 50 } })
+```
+
+
+### TG.Core.GetJobData
+----
+Fetches a detailed profile of a job, listing members online and active map configurations (blips, garages, stashes).
+
+##### Parameters:
+- `job`: (string) Job name.
+
+##### Return:
+- `table`: Job profile details `{ name, label, grades, players, dutyzones, blips, stashes, vehicles, garages }`.
+
+```lua
+local details = TG.Core.GetJobData('police')
+```
+
+
+### TG.Core.AddJobGrade
+----
+Adds or updates a grade level inside a job configuration.
+
+##### Parameters:
+- `job`: (string) Job name.
+- `grade`: (number) Grade level number.
+- `gradeData`: (table) Grade details `{ label, salary }`.
+
+```lua
+TG.Core.AddJobGrade('police', 3, { label = 'Lieutenant', salary = 500 })
+```
+
+
+### TG.Core.DeleteJobGrade
+----
+Deletes a grade level from a job configuration.
+
+##### Parameters:
+- `job`: (string) Job name.
+- `grade`: (number) Grade level number.
+
+```lua
+TG.Core.DeleteJobGrade('police', 3)
+```
+
+
+### TG.Core.SetJobDuty
+----
+Sets the player's on-duty status.
+
+##### Parameters:
+- `source`: (number) Player server ID.
+- `onDuty`: (boolean) On-duty status toggle.
+
+```lua
+TG.Core.SetJobDuty(source, true)
+```

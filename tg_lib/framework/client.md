@@ -1,44 +1,83 @@
 # Client Side
-you can easily call all of this function inside of your resource script by doing `TG.Core`
+You can easily call all of these functions inside your resource script by doing `TG.Core`.
+
+> [!TIP]
+> You can query `TG.Core.framework` to determine which framework is running (returns `'esx'` or `'qbx'`).
+
+---
+
+## Client Core APIs
+
 ### TG.Core.getPlayerData
 ----
-this will return player data which will helpful for you to check player information in your script. This will change according to framework of server. 
+Returns the current cached player data block.
 
+##### Return:
+- `table`: The framework's player data structure.
+
+##### Example
 ```lua
-local playerdata = TG.Core.getPlayerData()
+local data = TG.Core.getPlayerData()
 ```
+
 
 ### TG.Core.getPlayerNameClient
 ----
-this function will return the player name.
+Retrieves the local player's character name string.
 
+##### Return:
+- `string`: Player character display name (e.g. `'John Doe'`).
+
+##### Example
 ```lua
-local playername = TG.Core.getPlayerNameClient()
+local charName = TG.Core.getPlayerNameClient()
 ```
+
 
 ### TG.Core.GetJob
 ----
-this function will return the player job which contain job name, label, grade, etc...
+Retrieves the local player's current job details.
 
+##### Return:
+- `table | nil`: Job details table.
+  - **ESX fields**: Contains `.name`, `.label`, `.grade`, `.grade_name`, `.grade_label`, `.grade_salary`, etc.
+  - **QBox fields**: Contains `.name`, `.label`, `.grade` (table with `.name`, `.level`), `.payment`, `.onduty`, etc.
+
+##### Example
 ```lua
 local job = TG.Core.GetJob()
+if job then
+    print("My job is:", job.name)
+end
 ```
+
 
 ### TG.Core.GetJobDuty
 ----
-this function will return the player job duty status
+Checks whether the local player is currently marked as on duty.
 
+##### Return:
+- `boolean`: `true` if on duty, `false` otherwise.
+
+> [!NOTE]
+> - **ESX**: Performs an asynchronous callback request to the server to verify duty status.
+> - **QBox**: Resolves the state immediately by checking the client-cached `job.onduty` value.
+
+##### Example
 ```lua
-local duty = TG.Core.GetJobDuty()
+local onDuty = TG.Core.GetJobDuty()
 ```
+
 
 ### TG.Core.VehicleList
 ----
-this function will return entire vehicles inside server
+Returns a sorted catalog list of all vehicles registered in the framework configuration database. Useful for populating vehicle spawn menu options.
 
+##### Return:
+- `table`: List array of vehicle selection items `{ label, value }`.
+
+##### Example
 ```lua
-local vehicles = TG.Core.VehicleList()
+local options = TG.Core.VehicleList()
+-- Suitable for use inside TG.menu options
 ```
-
-> [!IMPORTANT]
-> If you need know which framework or need to refer which one in script use ```local framework = TG.Core.framework```
