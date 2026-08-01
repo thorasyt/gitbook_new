@@ -188,3 +188,68 @@ for i = 1, #jobs do
     print(job.label) 
     print(#job.grades)
 end
+```
+
+
+### TG.Core.SetJob
+----
+This function will set job of player using player Id
+
+##### parameters
+- source: (number) the player's server side id
+- jobName: (string) the job name
+- grade: (number) the grade of the job
+
+##### return
+- boolean: true if the job was set successfully, false otherwise
+
+##### Example
+```lua
+local playerJob = TG.Core.SetJob(source, "police", 0)
+if playerJob then
+   print("Job set successfully")
+end
+```
+
+
+### TG.Core.PlateExist
+-----
+This function will return a boolen value true if plate exist in database otherwise false
+
+##### parameters
+- plate: (string) the plate to check
+
+##### return
+- boolean: true if the plate exists, false otherwise
+
+##### Example
+```lua
+local plateExist = TG.Core.PlateExist("123456")
+if plateExist then
+   print("Plate exists")
+end
+```
+
+
+### TG.Core.AddVehicleToDatabase
+----
+This function will execute vehicle spawn and save properties to database then return boolen value.
+
+##### parameters
+- src: (number) the player's server side id
+- model: (string) the vehicle model
+- plate: (string) the vehicle plate
+
+##### return
+- boolean: true if the vehicle was added successfully, false otherwise
+
+##### Example
+```lua
+local vehicleAdded = TG.Core.AddVehicleToDatabase(source, "Adder", "123456")
+if vehicleAdded then
+   print("Vehicle added successfully")
+end
+```
+
+
+### 
