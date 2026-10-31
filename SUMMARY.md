@@ -5,7 +5,8 @@
 ## TG-HUD
 * [Overview](tg-hud/readme.md)
 * [Installation](tg-hud/installation.md)
-* [Configuration](tg-hud/configuration/config.md)
+* * Configuration
+  * [shared/config.lua](tg-hud/configuration/config.md)
 * [Controls & Commands](tg-hud/command.md)
 
 ## TG-Admin
