@@ -1,4 +1,4 @@
-## ⌨️ Controls & Commands
+## Controls & Commands
 
 ### Commands
 | Command | Permission | Description |
