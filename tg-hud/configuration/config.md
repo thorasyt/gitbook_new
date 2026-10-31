@@ -1,4 +1,4 @@
-# TG-HUD: Configuration Guide (`shared/config.lua`)
+# shared/config.lua
 
 This document provides a comprehensive, field-by-field breakdown of **`shared/config.lua`**. It explains every setting, data type, default value, internal logic, and how each option affects client and server behavior.
 
@@ -99,10 +99,6 @@ basicConfig = {
 - **Type:** `string`
 - **Options:** `'rounded'` | `'circle'`
 - **Default:** `'rounded'`
-- **How it works:**
-  - `'rounded'`: Injects the streamed texture dictionary `tgmap_round` with texture `tg-radar-rounded` using rectangular mask clipping (`clip = 0`).
-  - `'circle'`: Injects the streamed texture dictionary `tgmap` with texture `tg-radar-circular` using circular mask clipping (`clip = 1`, `square = true`).
-  - Both textures stream directly from the `stream/` directory via `minimap.gfx`.
 
 ### Performance Profile (`performance`)
 - **Type:** `string`
