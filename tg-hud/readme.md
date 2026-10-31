@@ -1,7 +1,7 @@
 # tg-hud
 
 > **An ultra-modern, high-performance, and fully customizable HUD solution for FiveM.**
-> Built with **Lua 5.4**, **React**, **TypeScript**, and **Vite**, powered by **`ox_lib`**, with native support for **ESX**, **Qbox (`qbx_core`)**, and **QBCore**.
+> Built with **Lua 5.4**, **React**, **TypeScript**, and **Vite**, powered by **`ox_lib`**, with native support for **ESX** and **Qbox **
 
 ---
 
@@ -48,8 +48,8 @@ Choose from 24 beautifully designed status indicator styles grouped into 3 disti
 **Supported Status Vitals:**
 - ❤️ **Health** (Accurate down/death state handling)
 - 🛡️ **Armor**
-- 🍔 **Hunger** (Auto-updated from ESX Status / QB / Qbox state bags)
-- 💧 **Thirst** (Auto-updated from ESX Status / QB / Qbox state bags)
+- 🍔 **Hunger** (Auto-updated from ESX Status / Qbox state bags)
+- 💧 **Thirst** (Auto-updated from ESX Status / Qbox state bags)
 - ⚡ **Stamina & Oxygen** (Automatically detects underwater diving and switches to oxygen tracking)
 - 🧠 **Stress** (Integrated with dynamic screen blur & ragdoll effects)
 - 🎙️ **Voice Activity** (Real-time talk indicator & proximity range from `pma-voice`)
@@ -87,9 +87,6 @@ Choose from 24 beautifully designed status indicator styles grouped into 3 disti
 ---
 
 ### 4. 🧭 Minimap / Radar & Compass Navigation
-- **Custom Streamed Radar Textures:**
-  - **Rounded** radar mask (`tgmap_round.ytd`, `minimap.gfx`).
-  - **Circular** radar mask (`tgmap.ytd`, `minimap.gfx`).
 - **Visibility Options:**
   - `Always`: Radar is visible on foot and in vehicle.
   - `In Vehicle`: Radar only displays when seated inside a vehicle.
