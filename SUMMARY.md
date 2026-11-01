@@ -9,6 +9,7 @@
   * [shared/config.lua](tg-hud/configuration/config.md)
   * [shared/defaultsize.lua](tg-hud/configuration/defaultsize.md)
   * [shared/fuel.lua](tg-hud/configuration/fuel.md)
+  * [shared/weapon.lua](tg-hud/configuration/weapon.md)
 * [Controls & Commands](tg-hud/command.md)
 
 ## TG-Admin
