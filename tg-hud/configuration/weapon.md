@@ -210,7 +210,7 @@ local WeaponNames = {
 ### Step 2: Add Matching Icon Asset (NUI)
 Place the matching SVG or PNG icon inside the HUD's web UI asset directory using the exact spawn key name:
 ```
-web/public/icons/weapons/WEAPON_GLOCK19.svg
+web/weapon_image/WEAPON_GLOCK19.svg
 ```
 
 ### Step 3: Restart Resource
