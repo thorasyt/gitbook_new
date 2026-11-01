@@ -50,7 +50,7 @@ exports['tg-hud']:toggleHud()
     - `nil` (no argument): Inverts the current visibility state.
 - **Return Type:** `void`
 - **Common Use Cases:**
-  - Hiding HUD during inventory menus (`ox_inventory`, `qb-inventory`).
+  - Hiding HUD during inventory menus (`ox_inventory`).
   - Hiding HUD during character creation, clothes stores, or barber shops.
   - Hiding HUD during death, downed states, or hospital screens.
 
