@@ -177,3 +177,9 @@ Choose from 24 beautifully designed status indicator styles grouped into 3 disti
 | Any Supported Fuel Resource | Optional | Vehicle fuel levels (LegacyFuel, ox_fuel, cdn-fuel, etc.) |
 
 ---
+
+## 📄 License & Credits
+
+- **Author:** [ThOraZ](https://github.com/)
+- **Core Library:** Built with the assistance of [ox_lib](https://github.com/overextended/ox_lib).
+- Designed for FiveM community servers seeking a high-tier, fully customizable HUD experience.

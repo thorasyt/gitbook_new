@@ -11,6 +11,7 @@
   * [shared/fuel.lua](tg-hud/configuration/fuel.md)
   * [shared/weapon.lua](tg-hud/configuration/weapon.md)
 * [Controls & Commands](tg-hud/command.md)
+* [Developer API & Exports](tg-hud/exports.md)
 
 ## TG-Admin
 * [Overview](02-tg-admin/readme.md)
