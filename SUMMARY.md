@@ -5,7 +5,6 @@
 ## TG-HUD
 * [Overview](tg-hud/readme.md)
 * [Installation](tg-hud/installation.md)
-* [Integrations](tg-hud/integration.md)
 * Configuration
   * [shared/config.lua](tg-hud/configuration/config.md)
   * [shared/defaultsize.lua](tg-hud/configuration/defaultsize.md)
