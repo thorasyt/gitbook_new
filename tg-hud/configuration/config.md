@@ -81,6 +81,18 @@ DebugMode = false
 
 ---
 
+## 3. Logo
+ ```lua
+ logo = 'logo.png'
+```
+
+- **Data Type:** `string` (`logo.png`| `logo.gif`|`logo.webp`| `logo.svg`|`logo.jpg`|`false`)
+- **Default:** `logo.png`
+- **Description:** Before Script restart change on Directory and config for implement
+- **Path:** `tg-hud\web\dist\assets\logo.png`
+
+---
+
 ## 3. Basic Configuration (`basicConfig`)
 
 The `basicConfig` table sets the server defaults for initial player sessions. Players can override these settings locally in the `/edithud` menu; their personal choices are saved to client KVP (`tg_hud:data`).
