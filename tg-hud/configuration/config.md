@@ -8,17 +8,18 @@ This document provides a comprehensive, field-by-field breakdown of **`shared/co
 
 1. [Overview & Metatable Pattern](#1-overview--metatable-pattern)
 2. [Debug Mode](#2-debug-mode)
-3. [Basic Configuration (`basicConfig`)](#3-basic-configuration-basicconfig)
+3. [Logo](#3-logo)
+4. [Basic Configuration (`basicConfig`)](#4-basic-configuration-basicconfig)
    - [Minimap Shape (`minimap`)](#minimap-shape-minimap)
    - [Performance Profile (`performance`)](#performance-profile-performance)
    - [Clock Mode (`time`)](#clock-mode-time)
    - [Compass Orientation (`composs`)](#compass-orientation-composs)
    - [Minimap Display Condition (`minimapShow`)](#minimap-display-condition-minimapshow)
-4. [Default HUD Styles (`defaultHudStyle`)](#4-default-hud-styles-defaulthudstyle)
+5. [Default HUD Styles (`defaultHudStyle`)](#5-default-hud-styles-defaulthudstyle)
    - [Player Status Style (`status`)](#player-status-style-status)
    - [Speedometer Style (`speedometer`)](#speedometer-style-speedometer)
    - [Server Info Style (`info`)](#server-info-style-info)
-5. [Seatbelt System (`seatbelt`)](#5-seatbelt-system-seatbelt)
+6. [Seatbelt System (`seatbelt`)](#6-seatbelt-system-seatbelt)
    - [Master Switch (`enable`)](#master-switch-enable)
    - [Supported Classes (`class`)](#supported-classes-class)
    - [Emergency Vehicle Exemption (`IngnoreEmergencyVehicle`)](#emergency-vehicle-exemption-ingnoreemergencyvehicle)
@@ -26,10 +27,10 @@ This document provides a comprehensive, field-by-field breakdown of **`shared/co
    - [Ejection Velocity Threshold (`minSpeedToEject`)](#ejection-velocity-threshold-minspeedtoeject)
    - [Prevent Vehicle Exit While Buckled (`ExitOnSeatBelt`)](#prevent-vehicle-exit-while-buckled-exitonseatbelt)
    - [Keybind Registration (`keybind`)](#keybind-registration-keybind)
-6. [Cruise Control System (`cruise`)](#6-cruise-control-system-cruise)
+7. [Cruise Control System (`cruise`)](#7-cruise-control-system-cruise)
    - [Master Switch (`enable`)](#cruise-master-switch-enable)
    - [Keybind Registration (`keybind`)](#cruise-keybind-registration-keybind)
-7. [Stress Management System (`stress`)](#7-stress-management-system-stress)
+8. [Stress Management System (`stress`)](#8-stress-management-system-stress)
    - [Master Switch (`enable`)](#stress-master-switch-enable)
    - [Gunshot Stress Probability (`chance`)](#gunshot-stress-probability-chance)
    - [Effect Trigger Threshold (`minlevel`)](#effect-trigger-threshold-minlevel)
@@ -38,7 +39,7 @@ This document provides a comprehensive, field-by-field breakdown of **`shared/co
    - [Screen Blur Intensities (`blur`)](#screen-blur-intensities-blur)
    - [Screen Blur Intervals (`interval`)](#screen-blur-intervals-interval)
    - [Vehicle Class Stress Matrix (`vehicleClass`)](#vehicle-class-stress-matrix-vehicleclass)
-8. [Quick Reference Table](#8-quick-reference-table)
+9. [Quick Reference Table](#9-quick-reference-table)
 
 ---
 
@@ -93,7 +94,7 @@ DebugMode = false
 
 ---
 
-## 3. Basic Configuration (`basicConfig`)
+## 4. Basic Configuration (`basicConfig`)
 
 The `basicConfig` table sets the server defaults for initial player sessions. Players can override these settings locally in the `/edithud` menu; their personal choices are saved to client KVP (`tg_hud:data`).
 
@@ -152,7 +153,7 @@ basicConfig = {
 
 ---
 
-## 4. Default HUD Styles (`defaultHudStyle`)
+## 5. Default HUD Styles (`defaultHudStyle`)
 
 Sets the default appearance assigned to players when they connect for the first time.
 
@@ -208,7 +209,7 @@ defaultHudStyle = {
 
 ---
 
-## 5. Seatbelt System (`seatbelt`)
+## 6. Seatbelt System (`seatbelt`)
 
 Handles seatbelt logic, crash detection, and windscreen ejection physics.
 
@@ -273,7 +274,7 @@ seatbelt = {
 
 ---
 
-## 6. Cruise Control System (`cruise`)
+## 7. Cruise Control System (`cruise`)
 
 ```lua
 cruise = {
@@ -301,7 +302,7 @@ cruise = {
 
 ---
 
-## 7. Stress Management System (`stress`)
+## 8. Stress Management System (`stress`)
 
 Handles player stress accumulation, job/weapon whitelisting, tiered visual screen blur, and extreme ragdoll fall effects.
 
@@ -411,7 +412,7 @@ stress = {
 
 ---
 
-## 8. Quick Reference Table
+## 9. Quick Reference Table
 
 | Setting | Path in Config | Default Value | Recommended Use |
 |---|---|---|---|
